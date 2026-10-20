@@ -85,8 +85,8 @@ CareTailor is committed to protecting the security of your personal data through
 Personal data collected by CareTailor is stored and processed in 6 separate ways
 
 1. In our email system – [support@caretailor.co.uk](mailto:support@caretailor.co.uk). This email may be shared to management team members and admin staff email addresses if required to respond to your enquiry
-2. We use the web site to get enquiries and the data we collect will be stored on our ISPs ([Cloudfare](https://www.cloudflare.com/) or [Webflow](https://webflow.com/)) secure servers
-3. The database where the data is stored is [Supabase](https://supabase.com/)
+2. We use the web site to get enquiries. Our website is hosted by [Vercel](https://vercel.com/), and if you join our mailing list, your email address and whether you are a carer or looking for care are stored securely by our email provider, [Mailchimp](https://mailchimp.com/)
+3. The database where the data from the CareTailor app is stored is [Supabase](https://supabase.com/)
 4. Once we say we can accept your request to be a Care Giver or person requiring care on our system, your data is stored in our systems as described in bullet point 2 and 3 above.
 5. Your name, email address and phone number is stored in our password protected calendar at yyyyyy so any team member or admin staff can communicate with you in case of emergency
 6. Your bank details will be entered onto our bank account to manage the charges we provide for using our service (once CareTailor if fully functional and live).
