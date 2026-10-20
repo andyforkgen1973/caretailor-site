@@ -1,0 +1,16 @@
+---
+// Layout for Markdown pages in src/pages (Terms, Privacy).
+import Base from './Base.astro';
+const { frontmatter } = Astro.props;
+---
+
+<Base title={frontmatter.title} description={frontmatter.description}>
+  <main class="container">
+    <header class="legal-header">
+      <a href="/"><img src="/images/logo-colour.svg" alt="CareTailor" width="180" height="35" /></a>
+    </header>
+    <article class="legal">
+      <slot />
+    </article>
+  </main>
+</Base>

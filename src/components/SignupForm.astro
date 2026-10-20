@@ -1,0 +1,82 @@
+---
+// Mailing-list form. Subscribes straight into Mailchimp (settings in src/data/site.ts).
+// Works without JavaScript (opens Mailchimp's own confirmation page); with JavaScript
+// it stays on the page and shows the result inline.
+import { site } from '../data/site';
+
+interface Props {
+  id: string;            // unique per form on the page, e.g. "hero"
+  buttonLabel?: string;
+}
+const { id, buttonLabel = 'JOIN' } = Astro.props;
+const mc = site.mailchimp;
+const action = `${mc.action}?u=${mc.u}&id=${mc.id}&f_id=${mc.f_id}`;
+const honeypot = `b_${mc.u}_${mc.id}`;
+---
+
+<div class="signup" data-signup>
+  <form action={action} method="post" target="_blank" novalidate>
+    <div class="fields">
+      <label class="sr-only" for={`${id}-email`}>Email address</label>
+      <input id={`${id}-email`} type="email" name="EMAIL" placeholder="Insert your email" autocomplete="email" required />
+      <label class="sr-only" for={`${id}-role`}>I'm a</label>
+      <select id={`${id}-role`} name={mc.roleField} required>
+        <option value="" disabled selected>I'm a</option>
+        <option value="Carer">Carer</option>
+        <option value="Looking for care">Looking for care</option>
+      </select>
+    </div>
+    <div class="hp" aria-hidden="true"><input type="text" name={honeypot} tabindex="-1" value="" /></div>
+    <button type="submit">{buttonLabel}</button>
+  </form>
+  <p class="status" role="status" hidden></p>
+</div>
+
+<script>
+  // Submit to Mailchimp's JSONP endpoint so people stay on the page.
+  document.querySelectorAll<HTMLElement>('[data-signup]').forEach((wrap) => {
+    const form = wrap.querySelector('form')!;
+    const status = wrap.querySelector<HTMLElement>('.status')!;
+    const button = form.querySelector('button')!;
+
+    const show = (ok: boolean, text: string) => {
+      status.hidden = false;
+      status.className = 'status ' + (ok ? 'ok' : 'err');
+      status.textContent = text;
+    };
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = form.querySelector<HTMLInputElement>('input[type=email]')!;
+      const role = form.querySelector('select')!;
+      if (!email.value || !email.checkValidity()) return show(false, 'Please enter a valid email address.');
+      if (!role.value) return show(false, "Please choose whether you're a carer or looking for care.");
+
+      const cb = 'mc_cb_' + Math.random().toString(36).slice(2);
+      const params = new URLSearchParams(new FormData(form) as any);
+      params.set('c', cb);
+      const src = form.action.replace('/subscribe/post?', '/subscribe/post-json?') + '&' + params.toString();
+      const script = document.createElement('script');
+      button.disabled = true;
+
+      const done = () => { button.disabled = false; script.remove(); delete (window as any)[cb]; };
+      const timer = setTimeout(() => { done(); show(false, 'Something went wrong. Please try again in a moment.'); }, 10000);
+
+      (window as any)[cb] = (res: { result: string; msg: string }) => {
+        clearTimeout(timer);
+        done();
+        if (res.result === 'success') {
+          form.reset();
+          show(true, 'Thank you! Please check your inbox to confirm your subscription.');
+        } else {
+          // Mailchimp messages can start with "0 - "; strip that and any HTML.
+          const msg = (res.msg || '').replace(/^\d+\s*-\s*/, '').replace(/<[^>]+>/g, '');
+          show(false, /already subscribed/i.test(msg) ? "You're already on the list. Thank you!" : msg || 'Something went wrong. Please try again.');
+        }
+      };
+      script.src = src;
+      script.onerror = () => { clearTimeout(timer); done(); show(false, 'Something went wrong. Please try again in a moment.'); };
+      document.body.appendChild(script);
+    });
+  });
+</script>
