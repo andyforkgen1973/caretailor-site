@@ -358,6 +358,7 @@ p { margin: 0; }
   .hero-copy .lede { text-align: center; font-size: 1rem; }
   .signup form { flex-direction: column; }
   .signup .fields { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+  .signup input[type='email'] { flex: none; }
   .signup select { width: 100%; }
   .split .col { display: flex; flex-direction: column; align-items: center; }
   .split .families-col { grid-row: 1; }
