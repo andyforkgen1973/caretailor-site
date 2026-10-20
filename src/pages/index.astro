@@ -17,27 +17,29 @@ const families = [
 ];
 
 const direct = [
-  { img: '/images/direct-pricing.webp', w: 640, h: 541, title: 'Clear pricing', text: 'See carers’ rates upfront with no agency fees or hidden costs', offset: true },
-  { img: '/images/direct-personal.webp', w: 640, h: 768, title: 'Personalised service', text: 'Tailored support built around your loved ones comfort and preferences', lift: true },
-  { img: '/images/direct-reviews.webp', w: 640, h: 794, title: 'Family reviews', text: 'Read reviews from families like yours before you book' },
+  { img: '/images/direct-pricing.webp', w: 640, h: 541, anim: 'left', title: 'Clear pricing', text: 'See carers’ rates upfront with no agency fees or hidden costs', offset: true },
+  { img: '/images/direct-personal.webp', w: 640, h: 768, anim: 'up', title: 'Personalised service', text: 'Tailored support built around your loved ones comfort and preferences', lift: true },
+  { img: '/images/direct-reviews.webp', w: 640, h: 794, anim: 'right', title: 'Family reviews', text: 'Read reviews from families like yours before you book' },
 ];
 ---
 
 <Base>
-  <header class="hero">
+  <header class="hero" data-anim="fade" data-offset="0" style="--delay: 50ms">
     <div class="oval green" aria-hidden="true"></div>
     <img class="arrow arrow-d" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
     <img class="arrow arrow-c" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
     <div class="container">
       <img class="arrow arrow-b" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
       <img class="arrow arrow-a" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
-      <a href="/" class="brand"><img src="/images/logo-colour.svg" alt="CareTailor" width="180" height="35" /></a>
+      <a href="/" class="brand" data-anim="left" data-offset="0" style="--delay: 300ms"><img src="/images/logo-colour.svg" alt="CareTailor" width="180" height="35" /></a>
       <div class="hero-copy">
-        <h1 class="h1">Trusted elderly care direct from local carers</h1>
-        <p class="lede">CareTailor connects families with self employed carers - no agency fees and fair pay.</p>
-        <a href={site.signupUrl} class="button">SIGN UP</a>
-        <h2 class="form-title">Join our mailing list</h2>
-        <SignupForm id="hero" buttonLabel="JOIN" />
+        <h1 class="h1" data-anim="left" data-offset="0" style="--delay: 600ms">Trusted elderly care direct from local carers</h1>
+        <p class="lede" data-anim="left" data-offset="0" style="--delay: 900ms">CareTailor connects families with self employed carers - no agency fees and fair pay.</p>
+        <div class="hero-actions" data-anim="left" data-offset="0" style="--delay: 1200ms">
+          <a href={site.signupUrl} class="button">SIGN UP</a>
+          <h2 class="form-title">Join our mailing list</h2>
+          <SignupForm id="hero" buttonLabel="JOIN" />
+        </div>
       </div>
     </div>
   </header>
@@ -46,7 +48,7 @@ const direct = [
     <section class="band tinted carers">
       <div class="container">
         <div class="split carers-split">
-          <div class="col">
+          <div class="col" data-anim="left">
             <div class="pill">Carers</div>
             <h2 class="h2">The complete toolkit for self employed carers</h2>
             <div class="cards">
@@ -61,7 +63,7 @@ const direct = [
               ))}
             </div>
           </div>
-          <img class="carers-img" src="/images/carers.webp" alt="The CareTailor carer dashboard on a phone" width="900" height="587" loading="lazy" />
+          <img data-anim="right" class="carers-img" src="/images/carers.webp" alt="The CareTailor carer dashboard on a phone" width="900" height="587" loading="lazy" />
         </div>
       </div>
     </section>
@@ -69,8 +71,8 @@ const direct = [
     <section class="band families">
       <div class="container">
         <div class="split">
-          <img src="/images/families.webp" alt="A family finding a carer in the CareTailor app" width="900" height="847" loading="lazy" />
-          <div class="col families-col">
+          <img data-anim="left" src="/images/families.webp" alt="A family finding a carer in the CareTailor app" width="900" height="847" loading="lazy" />
+          <div class="col families-col" data-anim="right">
             <div class="pill">Families</div>
             <h2 class="h2">Connect directly with carers you can trust</h2>
             <div class="cards">
@@ -92,10 +94,10 @@ const direct = [
     <section class="band tinted direct">
       <div class="container">
         <img class="arrow" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
-        <h2 class="h2 center">Direct, reliable care that’s safe, simple, and affordable</h2>
+        <h2 class="h2 center" data-anim="up">Direct, reliable care that’s safe, simple, and affordable</h2>
         <div class="three">
           {direct.map((d) => (
-            <div class:list={['tile', { offset: d.offset }]}>
+            <div class:list={['tile', { offset: d.offset }]} data-anim={d.anim}>
               <img class:list={{ lift: d.lift }} src={d.img} alt="" width={d.w} height={d.h} loading="lazy" />
               <div class="text">
                 <h3 class="h3">{d.title}</h3>
@@ -113,7 +115,7 @@ const direct = [
         <div class="oval o1" aria-hidden="true"></div>
         <div class="oval o2" aria-hidden="true"></div>
         <div class="oval o3" aria-hidden="true"></div>
-        <div class="supporting-head">
+        <div class="supporting-head" data-anim="up">
           <img class="arrow-side" src="/images/arrow-02.svg" alt="" aria-hidden="true" />
           <div>
             <h2 class="h2 center">Supporting families, empowering carers at every step</h2>
@@ -121,17 +123,17 @@ const direct = [
           </div>
           <img class="arrow-side" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
         </div>
-        <img class="platform" src="/images/platform.webp" alt="CareTailor on desktop and mobile" width="900" height="505" loading="lazy" />
+        <img data-anim="up" class="platform" src="/images/platform.webp" alt="CareTailor on desktop and mobile" width="900" height="505" loading="lazy" />
       </div>
     </section>
 
     <section class="cta-section">
       <div class="container">
-        <div class="cta">
+        <div class="cta" data-anim="up">
           <div class="cta-inner">
             <h2 class="cta-title">Quality care starts here with CareTailor</h2>
             <p class="cta-text">Be the first know when we launch and get exclusive access to features that put you in control - built by a founder who’s been there!</p>
-            <SignupForm id="cta" buttonLabel="Join Waitlist" />
+            <div data-anim="up" data-offset="0" style="--delay: 200ms"><SignupForm id="cta" buttonLabel="Join Waitlist" /></div>
           </div>
         </div>
       </div>
