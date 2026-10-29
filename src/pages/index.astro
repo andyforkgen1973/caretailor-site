@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import SignupForm from '../components/SignupForm.astro';
+import VideoModal from '../components/VideoModal.astro';
 import { site } from '../data/site';
 
 // Homepage content. Edit the text here; layout and styling stay the same.
@@ -31,10 +32,17 @@ const direct = [
     <div class="container">
       <img class="arrow arrow-b" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
       <img class="arrow arrow-a" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
-      <a href="/" class="brand" data-anim="left" data-offset="0" style="--delay: 300ms"><img src="/images/logo-colour.svg" alt="CareTailor" width="180" height="35" /></a>
+      <div class="top-bar">
+        <a href="/" class="brand" data-anim="left" data-offset="0" style="--delay: 300ms"><img src="/images/logo-colour.svg" alt="CareTailor" width="180" height="35" /></a>
+        <div class="top-actions" data-anim="right" data-offset="0" style="--delay: 300ms">
+          <VideoModal video={site.getStartedVideo} label="How to get started" />
+          <a href={site.loginUrl} class="button">Login</a>
+        </div>
+      </div>
       <div class="hero-copy">
         <h1 class="h1" data-anim="left" data-offset="0" style="--delay: 600ms">Trusted elderly care direct from local carers</h1>
         <p class="lede" data-anim="left" data-offset="0" style="--delay: 900ms">CareTailor connects families with self employed carers - no agency fees and fair pay.</p>
+        <p class="launch-note" data-anim="left" data-offset="0" style="--delay: 1050ms">We are now live in the High Wycombe area. If you are based in or around High Wycombe, <a href={site.signupUrl}>sign up here</a>.</p>
         <div class="hero-actions" data-anim="left" data-offset="0" style="--delay: 1200ms">
           <a href={site.signupUrl} class="button">SIGN UP</a>
           <h2 class="form-title">Join our mailing list</h2>

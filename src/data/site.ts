@@ -4,6 +4,13 @@ export const site = {
   // Where the "SIGN UP" button goes
   signupUrl: 'https://app.caretailor.co.uk/register/',
 
+  // Where the "Login" button goes
+  loginUrl: 'https://app.caretailor.co.uk',
+
+  // Video shown by the "How to get started" button. Either a direct video file
+  // (.mp4/.mov/.webm) or a YouTube/Vimeo link; the popup works out which.
+  getStartedVideo: 'https://www.dropbox.com/scl/fi/4swzd9k601uvhumq0xk1d/CareTailor-CarersV2.mov?rlkey=tm2e9g85aa8agc7rn3llq98q3&raw=1',
+
   // Mailchimp audience the mailing-list forms subscribe people to.
   // Found in Mailchimp under Audience > Signup forms > Embedded forms.
   mailchimp: {

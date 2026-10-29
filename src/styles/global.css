@@ -88,6 +88,10 @@ p { margin: 0; }
   transition: background-color 0.2s;
 }
 .button:hover { background: var(--orange); }
+button.button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
+/* Stand-out orange-red button */
+.button-hot { background: #f0531c; color: var(--white); }
+.button-hot:hover { background: #c93d0c; }
 
 /* ---------- Decorations ---------- */
 .arrow { position: absolute; z-index: 0; pointer-events: none; }
@@ -119,7 +123,19 @@ p { margin: 0; }
 .hero .arrow-c { width: 150px; bottom: 0; left: 13rem; opacity: 0.33; }
 .hero .arrow-d { width: 220px; bottom: 3rem; right: 2rem; }
 
-.brand { display: inline-block; margin-bottom: 15rem; position: relative; z-index: 1; }
+/* Logo on the left, "How to get started" and "Login" on the right */
+.top-bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 15rem;
+}
+.top-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.brand { display: inline-block; position: relative; z-index: 1; }
 .brand img { width: 180px; }
 
 .hero-copy {
@@ -130,7 +146,9 @@ p { margin: 0; }
   align-items: flex-start;
   max-width: 750px;
 }
-.hero-copy .lede { margin-bottom: 1.5rem; }
+.hero-copy .lede { margin-bottom: 1rem; }
+.launch-note { font-size: 1.25rem; font-weight: 800; line-height: 1.375; max-width: 695px; margin-bottom: 1.5rem; }
+.launch-note a { color: inherit; text-decoration-color: #f0531c; text-decoration-thickness: 2px; text-underline-offset: 3px; }
 .hero-actions { width: 100%; display: flex; flex-direction: column; align-items: flex-start; }
 .hero-copy .button { margin-bottom: 20px; }
 .hero-copy .form-title { font-size: 20px; font-weight: 700; margin: 20px 0 10px; }
@@ -336,6 +354,39 @@ p { margin: 0; }
 .legal li ul { margin-top: 6px; }
 .legal a { color: var(--ink); text-decoration-color: var(--orange); text-underline-offset: 3px; }
 
+/* Manrope automatically draws "(c)" as a © symbol. Turn that off so clause
+   letters like (c) show as written. */
+.legal { font-variant-ligatures: none; font-feature-settings: 'calt' 0; }
+
+/* ---------- Video popup ---------- */
+.video-modal {
+  width: min(92vw, 1100px);
+  max-width: none;
+  padding: 0;
+  margin: auto;
+  border: 0;
+  border-radius: var(--radius);
+  background: #000;
+  overflow: visible;
+}
+.video-modal::backdrop { background: rgba(0, 0, 0, 0.75); }
+.video-modal-inner { position: relative; }
+.video-frame { aspect-ratio: 16 / 9; max-height: 85vh; border-radius: var(--radius); overflow: hidden; }
+.video-frame video, .video-frame iframe { display: block; width: 100%; height: 100%; border: 0; background: #000; }
+.video-modal-close {
+  position: absolute;
+  top: -48px;
+  right: 0;
+  width: 40px; height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
 /* ---------- Responsive ---------- */
 @media (min-width: 1280px) {
   .hero { background-position: 36vw center; }
@@ -352,6 +403,9 @@ p { margin: 0; }
 
 @media (max-width: 767px) {
   .brand { display: block; width: 180px; }
+  .top-bar { flex-direction: column; }
+  .top-actions { justify-content: center; }
+  .hero-copy .launch-note { text-align: center; font-size: 1rem; }
   .h1 { font-size: 2.5rem; text-align: center; }
   .h2 { font-size: 2.5rem; text-align: center; margin-bottom: 20px; }
   .h3 { font-size: 1.25rem; }
@@ -385,7 +439,10 @@ p { margin: 0; }
     background-repeat: repeat, no-repeat;
     background-size: auto, cover;
   }
-  .brand { margin-bottom: 10rem; }
+  .top-bar { margin-bottom: 10rem; }
+  .top-actions { width: 100%; }
+  .top-actions .button { flex: 1; display: flex; align-items: center; justify-content: center; padding: 10px 12px; white-space: nowrap; }
+  .hero-copy .launch-note { background: var(--white); }
   .h1 { font-size: 32px; }
   .h2 { font-size: 28px; }
   .h3 { font-size: 18px; text-align: center; }

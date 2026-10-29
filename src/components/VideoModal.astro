@@ -1,0 +1,67 @@
+---
+// A button that opens a video in a popup. The video loads only when opened
+// and stops when the popup closes.
+// `video` can be a direct file (.mp4/.mov/.webm) or a YouTube/Vimeo link.
+
+interface Props {
+  video: string;
+  label: string;
+  title?: string;
+}
+
+const { video, label, title = label } = Astro.props;
+
+function embedUrl(url: string): string | null {
+  const yt = url.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+  if (yt) return `https://www.youtube-nocookie.com/embed/${yt[1]}?autoplay=1&rel=0`;
+  const vimeo = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+  if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}?autoplay=1`;
+  return null;
+}
+
+const embed = embedUrl(video);
+---
+
+<button type="button" class="button button-hot" data-video-open>{label}</button>
+
+<dialog class="video-modal" aria-label={title} data-video-modal data-embed={embed} data-file={embed ? null : video}>
+  <div class="video-modal-inner">
+    <button type="button" class="video-modal-close" aria-label="Close video" data-video-close>&times;</button>
+    <div class="video-frame" data-video-frame></div>
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll<HTMLDialogElement>('[data-video-modal]').forEach((dialog) => {
+    const opener = dialog.previousElementSibling as HTMLButtonElement;
+    const frame = dialog.querySelector<HTMLElement>('[data-video-frame]')!;
+    const { embed, file } = dialog.dataset;
+
+    opener.addEventListener('click', () => {
+      if (embed) {
+        const iframe = document.createElement('iframe');
+        iframe.src = embed;
+        iframe.title = dialog.getAttribute('aria-label') ?? 'Video';
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+        iframe.allowFullscreen = true;
+        frame.replaceChildren(iframe);
+      } else if (file) {
+        const video = document.createElement('video');
+        video.src = file;
+        video.controls = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        frame.replaceChildren(video);
+      }
+      dialog.showModal();
+    });
+
+    // Remove the player on close so the video stops playing.
+    dialog.addEventListener('close', () => frame.replaceChildren());
+    dialog.querySelector('[data-video-close]')!.addEventListener('click', () => dialog.close());
+    // Clicking the dark backdrop closes it too.
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>
