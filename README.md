@@ -16,6 +16,7 @@ Every push to `main` deploys automatically. Pull requests get their own preview 
 | Privacy Policy | `src/pages/privacy-policy.md` |
 | Colours, fonts, spacing | `src/styles/global.css` (the `:root` block at the top) |
 | Images and icons | `public/images/` |
+| Sitemap (add new public pages by hand) | `public/sitemap.xml` |
 
 To add a new page, create `src/pages/your-page.md` (copy the top block from `privacy-policy.md`). It will appear at `/your-page`.
 
