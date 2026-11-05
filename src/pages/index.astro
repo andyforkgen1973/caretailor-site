@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import SignupForm from '../components/SignupForm.astro';
-import VideoModal from '../components/VideoModal.astro';
+import Header from '../components/Header.astro';
 import { site } from '../data/site';
 
 // Homepage content. Edit the text here; layout and styling stay the same.
@@ -32,13 +32,7 @@ const direct = [
     <div class="container">
       <img class="arrow arrow-b" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
       <img class="arrow arrow-a" src="/images/arrow-01.svg" alt="" aria-hidden="true" />
-      <div class="top-bar">
-        <a href="/" class="brand" data-anim="left" data-offset="0" style="--delay: 300ms"><img src="/images/logo-colour.svg" alt="CareTailor" width="180" height="35" /></a>
-        <div class="top-actions" data-anim="right" data-offset="0" style="--delay: 300ms">
-          <VideoModal video={site.getStartedVideo} label="How to get started" />
-          <a href={site.loginUrl} class="button">Login</a>
-        </div>
-      </div>
+      <Header animate />
       <div class="hero-copy">
         <h1 class="h1" data-anim="left" data-offset="0" style="--delay: 600ms">Trusted elderly care direct from local carers</h1>
         <p class="lede" data-anim="left" data-offset="0" style="--delay: 900ms">CareTailor connects families with self employed carers - no agency fees and fair pay.</p>

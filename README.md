@@ -10,6 +10,8 @@ Every push to `main` deploys automatically. Pull requests get their own preview 
 | --- | --- |
 | Homepage text and cards | `src/pages/index.astro` (the lists at the top of the file) |
 | Sign-up link, Mailchimp list, social links | `src/data/site.ts` |
+| About page | `src/pages/about.astro` |
+| Gemma's profile | `src/pages/about/gemma.astro` (the text at the top of the file) |
 | Terms and Conditions | `src/pages/terms-and-conditions.md` |
 | Privacy Policy | `src/pages/privacy-policy.md` |
 | Colours, fonts, spacing | `src/styles/global.css` (the `:root` block at the top) |

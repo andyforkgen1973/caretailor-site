@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+---
+
+<Base
+  title="About | CareTailor"
+  description="CareTailor is a digital marketplace that connects verified carers and home helps with families needing elderly care."
+>
+  <div class="about">
+    <header class="container about-top">
+      <Header />
+    </header>
+
+    <main class="container about-main">
+      <div class="about-intro">
+        <h1 class="h1">About CareTailor</h1>
+        <p class="lede">CareTailor is a digital marketplace that connects verified carers and home helps with families needing elderly care.</p>
+      </div>
+
+      <section class="founder-card" aria-labelledby="founder-name">
+        <img class="founder-card-img" src="/images/gemma-shinh-portrait.jpeg" alt="" width="333" height="333" />
+        <div class="founder-card-text">
+          <h2 class="h3" id="founder-name">Gemma Shinh</h2>
+          <p class="muted">Founder and CEO of CareTailor</p>
+        </div>
+        <a href="/about/gemma" class="button">Meet Gemma</a>
+      </section>
+    </main>
+  </div>
+</Base>

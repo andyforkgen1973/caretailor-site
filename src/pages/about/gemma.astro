@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+
+// Gemma's profile. Edit the text here; layout and styling stay the same.
+const opening =
+  'Gemma Shinh founded CareTailor because she knows how much life can change when someone you love suddenly needs care. Her ambition is deeply personal: to help families find the support she struggled to arrange, while giving carers the independence, recognition and opportunities they deserve.';
+
+const story = [
+  'When her mum, Inez, suffered a life-changing fall and could no longer walk, Gemma became her unpaid carer. For five years, she balanced caring responsibilities with work, home life and raising three young children. There was no preparation, no gradual introduction and no simple guide to navigating what came next.',
+  'She learnt through necessity. Personal care, medication management, moving and handling, and specialist equipment became part of everyday life. Paid carers visited four times a day, every day of the year, but when support was unreliable or fell short, Gemma had to step in. She experienced the responsibility of keeping someone safe alongside the emotional strain of being their daughter.',
+  'Those years changed her understanding of care. Behind every booking was a person whose dignity, comfort and independence mattered. Behind every arrangement was a family trying to make the right decisions, often under pressure and with little time to understand their options. Gemma saw how easily the practical demands of caring could overshadow the time families wanted to spend simply being together.',
+  'She also listened to the carers coming into her home. Their challenges were different, but equally important: limited control over their working lives, pressure on earnings and difficulties finding sustainable, flexible work. A better approach needed to work for the people providing care as well as those receiving it.',
+  'With a commercial background that includes 3i and Simply Business, Gemma brought business experience to a problem she understood personally. CareTailor grew from that combination: practical knowledge, commercial thinking and a determination to make care at home easier to organise around the individual.',
+  'That personal understanding has also shaped the people she has chosen to build alongside her. Gemma has deliberately assembled a team who bring their own lived experiences of care. Alongside expertise in technology, business and the care sector, they share an understanding of the uncertainty, difficult decisions and emotional weight that families can face. For Gemma, that shared experience helps keep the purpose of CareTailor close to every decision.',
+  'Her vision goes beyond helping someone find a carer. She wants families to be able to bring together a trusted circle of carers, home helps and local support, adapting it as their loved one’s needs change. Choice, continuity and relationships sit at the heart of that ambition.',
+  'Although Inez has since passed away, the experience of caring for her continues to shape Gemma’s work. CareTailor is her way of turning hard-won knowledge into something useful for others.',
+  'She is building the kind of support she wanted for her own family: thoughtful, practical and rooted in real life. Her purpose is to give more families confidence in their choices, more carers control over their work, and more people the chance to feel supported at home.',
+];
+---
+
+<Base
+  title="Gemma Shinh | Founder & CEO | CareTailor"
+  description="Meet Gemma Shinh, founder of CareTailor, and discover how caring for her mum inspired a more personal approach to care at home."
+>
+  <div class="about">
+    <header class="container about-top">
+      <Header />
+    </header>
+
+    <main class="container about-main">
+      <article>
+        <div class="profile-intro">
+          <img
+            class="profile-portrait"
+            src="/images/gemma-shinh-portrait.jpeg"
+            alt="Gemma Shinh, Founder and CEO of CareTailor"
+            width="333"
+            height="333"
+            fetchpriority="high"
+          />
+          <div class="profile-intro-text">
+            <p class="pill pill-small">Meet our founder</p>
+            <h1 class="h1">Gemma Shinh</h1>
+            <p class="profile-role">Founder and CEO of CareTailor</p>
+            <p class="profile-opening">{opening}</p>
+          </div>
+        </div>
+
+        <div class="profile-story">
+          <div class="prose">
+            {story.map((paragraph) => <p>{paragraph}</p>)}
+            <p class="profile-cta"><a href="/" class="button">Discover CareTailor</a></p>
+          </div>
+        </div>
+      </article>
+    </main>
+  </div>
+</Base>

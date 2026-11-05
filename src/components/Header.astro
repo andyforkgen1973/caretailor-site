@@ -1,0 +1,22 @@
+---
+// Logo on the left, "How to get started" and "Login" on the right.
+// Used in the homepage hero (with `animate`) and on the About pages.
+import VideoModal from './VideoModal.astro';
+import { site } from '../data/site';
+
+interface Props {
+  animate?: boolean;
+}
+
+const { animate = false } = Astro.props;
+const anim = (direction: string) =>
+  animate ? { 'data-anim': direction, 'data-offset': '0', style: '--delay: 300ms' } : {};
+---
+
+<div class="top-bar">
+  <a href="/" class="brand" {...anim('left')}><img src="/images/logo-colour.svg" alt="CareTailor" width="180" height="35" /></a>
+  <div class="top-actions" {...anim('right')}>
+    <VideoModal video={site.getStartedVideo} label="How to get started" />
+    <a href={site.loginUrl} class="button">Login</a>
+  </div>
+</div>

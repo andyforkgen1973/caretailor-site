@@ -13,7 +13,8 @@ const {
 } = Astro.props;
 
 const ogImage = new URL('/images/opengraph.jpg', Astro.site).href;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// Pages build to .html files but are served without the extension (cleanUrls in vercel.json).
+const canonical = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
 ---
 
 <!doctype html>

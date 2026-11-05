@@ -41,7 +41,8 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 
 p { margin: 0; }
 
-:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+/* Dark ring with a white inner ring, so focus shows on light, yellow and dark backgrounds */
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; box-shadow: 0 0 0 3px var(--white); }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -357,6 +358,66 @@ button.button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
 /* Manrope automatically draws "(c)" as a © symbol. Turn that off so clause
    letters like (c) show as written. */
 .legal { font-variant-ligatures: none; font-feature-settings: 'calt' 0; }
+
+/* ---------- About pages ---------- */
+.about {
+  background-image: linear-gradient(var(--hero-tint), transparent 38rem);
+  padding-top: 2rem;
+}
+.about-top .top-bar { margin-bottom: 0; }
+/* Same button as the homepage, in the darker shade that passes AA contrast with white text */
+.about .button-hot { background: #c93d0c; }
+.about .button-hot:hover { background: #a8320a; }
+.about-main { max-width: 60rem; padding-top: 3.5rem; padding-bottom: 5rem; }
+
+.pill-small { padding: 0.375rem 1rem; font-size: 0.9375rem; }
+
+.profile-intro {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 3.5rem;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+/* The photo has white corners built in, so the radius needs to be large enough to trim them */
+.profile-portrait { width: 280px; border-radius: 14%; }
+.profile-intro-text .pill { margin-bottom: 1.25rem; }
+.profile-intro-text .h1 { margin-bottom: 0.25rem; }
+.profile-role { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.25rem; }
+.profile-opening { font-size: 1.25rem; line-height: 1.55; }
+
+.profile-story {
+  padding: 4rem 2rem;
+  border-radius: var(--radius);
+  background: var(--white);
+}
+.prose { max-width: 39rem; margin-inline: auto; font-size: 1.125rem; line-height: 1.7; }
+.prose p + p { margin-top: 1.5em; }
+.prose .profile-cta { margin-top: 2.5rem; }
+
+.about-intro { max-width: 46rem; margin-bottom: 3rem; }
+.founder-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: var(--white);
+}
+.founder-card-img { width: 104px; border-radius: 14%; flex: none; }
+.founder-card-text { flex: 1; display: flex; flex-direction: column; gap: 0.25rem; }
+
+@media (max-width: 767px) {
+  .about-main { padding-top: 2.5rem; padding-bottom: 3rem; }
+  .profile-intro { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 2.5rem; }
+  .profile-portrait { width: 240px; margin-inline: auto; display: block; }
+  .profile-intro-text { text-align: center; }
+  .profile-opening { text-align: left; font-size: 1.125rem; }
+  .profile-story { padding: 2.5rem 1.5rem; }
+  .prose .profile-cta { text-align: center; }
+  .about-intro .lede { text-align: center; font-size: 1.125rem; }
+  .founder-card { flex-direction: column; text-align: center; }
+}
 
 /* ---------- Video popup ---------- */
 .video-modal {
