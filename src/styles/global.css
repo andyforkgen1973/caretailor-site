@@ -255,6 +255,16 @@ button.button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
 .card .h3 { font-weight: 600; }
 
 .carers-img { margin-top: 6rem; border-radius: var(--radius); }
+/* Desktop: line the photo's top up with the top of the white cards,
+   whatever height the heading wraps to. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 992px) {
+    .carers-split { grid-template-rows: auto auto 1fr; row-gap: 0; }
+    .carers-split > .col { grid-row: 1 / 4; display: grid; grid-template-rows: subgrid; justify-items: start; }
+    .carers-split > .col > .cards { justify-self: stretch; }
+    .carers-split > .carers-img { grid-column: 2; grid-row: 3; align-self: start; margin-top: 0; }
+  }
+}
 
 /* ---------- Direct care (3 columns) ---------- */
 .direct .h2 { max-width: 700px; margin-bottom: 2.75rem; }
