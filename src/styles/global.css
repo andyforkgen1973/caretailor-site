@@ -113,10 +113,19 @@ button.button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
   padding-top: 4rem;
   padding-bottom: 15rem;
   background-color: var(--hero-tint);
-  background-image: url('/images/hero.webp');
+  /* soft light pool behind the photo so the cut-out sits into the tint */
+  background-image: radial-gradient(ellipse 34% 52% at 76% 62%, rgba(255, 255, 255, 0.6), transparent 72%);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 460px center;
+}
+/* Cut-out photo of a carer and client. Sits on the tint, among the arrows, behind the text. */
+.hero-people {
+  position: absolute;
+  z-index: 0;
+  right: 2rem;
+  bottom: -12rem;              /* reaches down into the hero's bottom padding */
+  width: min(37vw, 560px);
+  height: auto;
+  pointer-events: none;
 }
 .hero .oval { bottom: -4rem; left: 0; }
 .hero .arrow-a { width: 100px; top: 8rem; left: -1rem; }
@@ -449,12 +458,18 @@ button.button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
 }
 
 /* ---------- Responsive ---------- */
-@media (min-width: 1280px) {
-  .hero { background-position: 36vw center; }
+/* Smaller laptops: narrow the text column so it clears the hero photo */
+@media (min-width: 992px) and (max-width: 1279px) {
+  .hero-copy { max-width: 58%; }
+  .hero-copy .h1 { font-size: 3.25rem; }
+  .hero-people { right: 0; width: 34vw; }
 }
 
+
 @media (max-width: 991px) {
-  .hero { background-position: 0% center; padding-top: 2rem; }
+  .hero { padding-top: 2rem; background-image: none; }
+  .top-bar { margin-bottom: 1.5rem; }
+  .hero-people { position: relative; right: auto; bottom: auto; display: block; width: auto; height: min(62vw, 440px); margin: 0 auto 1.5rem; }
   .hero-copy { max-width: 590px; padding-bottom: 40px; }
   .split { grid-template-columns: 1fr; }
   .three { grid-template-columns: 1fr; row-gap: 40px; }
@@ -493,23 +508,15 @@ button.button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
 
 @media (max-width: 479px) {
   .container { padding-inline: 16px; }
-  .hero {
-    padding-bottom: 2rem;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.19), rgba(255, 255, 255, 0.19)), url('/images/hero.webp');
-    background-position: 0 0, 30% -90px;
-    background-repeat: repeat, no-repeat;
-    background-size: auto, cover;
-  }
-  .top-bar { margin-bottom: 10rem; }
+  .hero { padding-bottom: 2rem; }
+  .hero-people { height: min(90vw, 380px); }
   .top-actions { width: 100%; }
   .top-actions .button { flex: 1; display: flex; align-items: center; justify-content: center; padding: 10px 12px; white-space: nowrap; }
-  .hero-copy .launch-note { background: var(--white); }
   .h1 { font-size: 32px; }
   .h2 { font-size: 28px; }
   .h3 { font-size: 18px; text-align: center; }
   .card .h3 { text-align: left; }
   .hero-copy { margin-bottom: 40px; padding-bottom: 0; }
-  .hero-copy .lede { background: var(--white); }
   .hero-copy .button { display: block; text-align: center; padding: 10px 20px; }
   .band.tinted { padding: 2rem 16px 0; }
   .band.families { padding-block: 4rem; }
