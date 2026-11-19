@@ -254,7 +254,7 @@ button.button { border: 0; font: inherit; font-weight: 700; cursor: pointer; }
 .card .text { display: flex; flex-direction: column; gap: 0.5rem; }
 .card .h3 { font-weight: 600; }
 
-.carers-img { margin-top: 6rem; }
+.carers-img { margin-top: 6rem; border-radius: var(--radius); }
 
 /* ---------- Direct care (3 columns) ---------- */
 .direct .h2 { max-width: 700px; margin-bottom: 2.75rem; }
